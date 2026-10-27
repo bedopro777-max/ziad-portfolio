@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <title>Ziad Mahmoud | Interior Designer</title>
+    
+    <!-- استيراد الخطوط الفخمة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- مكتبة عرض الصور 360 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core@5.7.1/index.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo" id="secretLogo">
+            <div class="logo-text">
+                <span>Ziad Mahmoud</span>
+            </div>
+        </div>
+        <nav>
+            <a href="#portfolio" class="nav-link">Portfolio</a>
+            <a href="#upload" class="nav-link nav-cta" id="uploadNavLink" style="display: none;">Upload</a>
+            <!-- زرار الأدمن مخفي، بيظهر بالضغط 5 مرات على الاسم -->
+            <button class="nav-link" id="adminBtn" style="display: none; background: transparent; border: none; cursor: pointer;">Admin</button>
+        </nav>
+    </header>
+
+    <!-- ==================== Hero Section ==================== -->
+    <section class="hero">
+        <!-- تأثير السحاب الذهبي -->
+        <div class="smoke-bg">
+            <div class="smoke smoke-1"></div>
+            <div class="smoke smoke-2"></div>
+            <div class="smoke smoke-3"></div>
+        </div>
+
+        <!-- غبار ذهبي متطاير -->
+        <div class="gold-particles" id="goldParticles"></div>
+
+        <!-- أشكال هندسية مزخرفة (الدواير) -->
+        <div class="decor-shape shape-1"></div>
+        <div class="decor-shape shape-2"></div>
+        <div class="decor-shape shape-3"></div>
+        <div class="decor-shape shape-4"></div>
+
+        <div class="hero-content">
+            <h1 class="luxury-title">
+                <span class="gold-text">Ziad Mahmoud</span><br>
+                Interior Designer<br>
+                <span class="amp">&</span> 3D Visualizer
+            </h1>
+            <div class="divider">
+                <span></span>
+                <i class="diamond"></i>
+                <span></span>
+            </div>
+            <p class="luxury-desc">
+                "Creating immersive, functional, and aesthetically pleasing interior spaces. I blend spatial planning with high-quality 3D visualization to bring concepts to life."
+            </p>
+        </div>
+    </section>
+
+    <!-- ==================== قسم العرض الموحد (Feed) ==================== -->
+    <section class="portfolio-section" id="portfolio">
+        <div class="section-header">
+            <span class="section-badge">✦ Portfolio</span>
+            <h2 class="section-title">My <span class="gradient-text">Work</span></h2>
+            <p class="section-subtitle">Images, videos, and 360° experiences</p>
+        </div>
+
+        <div class="feed-container" id="unifiedFeed">
+            <div class="empty-state">
+                <div class="empty-icon">✦</div>
+                <h3>No items yet</h3>
+                <p>Upload images, videos, or 360° photos to see them here</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== قسم الرفع ==================== -->
+    <section class="upload-section" id="upload" style="display: none;">
+        <div class="section-header">
+            <span class="section-badge">✦ Upload</span>
+            <h2 class="section-title">Upload <span class="gradient-text">Content</span></h2>
+            <p class="section-subtitle">Admin only area</p>
+        </div>
+
+        <div class="upload-card" style="max-width: 600px; margin: 0 auto;">
+            <div class="upload-card-glow"></div>
+            <div class="upload-card-icon">⬆</div>
+            <h3>Upload Media</h3>
+            <p class="upload-card-desc">Images, Videos, or 360° Panoramas</p>
+            
+            <div class="upload-dropzone" id="uploadBox">
+                <div class="upload-icon">📁</div>
+                <span>Drop files here or click to browse</span>
+                <small>Images will be auto-detected if they are 360°</small>
+                <input type="file" id="fileInput" accept="image/*,video/*" hidden multiple>
+            </div>
+            
+            <div class="upload-progress" id="uploadProgress" style="display: none;">
+                <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+                <span id="progressText">Uploading... 0%</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div>
+                    <div>Ziad Mahmoud</div>
+                    <div class="footer-sub">Interior Designer & 3D Visualizer</div>
+                </div>
+            </div>
+            <p class="footer-copy">© 2026 Ziad Mahmoud. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modals (Login, Lightbox, Video, 360) -->
+    <div class="lightbox" id="loginModal">
+        <button class="lightbox-close" id="closeLogin">✕</button>
+        <div class="login-box">
+            <h2 style="margin-bottom: 10px; color: white;">Admin Access</h2>
+            <p style="color: var(--text-sec); margin-bottom: 20px; font-size: 0.9em;">Enter password to unlock upload</p>
+            <input type="password" id="loginPassword" placeholder="Password" class="login-input">
+            <button id="loginSubmitBtn" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">Unlock</button>
+        </div>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="closeLightbox">✕</button>
+        <div class="lightbox-content">
+            <img id="lightboxImg" src="" alt="Image">
+            <div class="lightbox-actions">
+                <button class="lightbox-btn download" id="downloadLightbox">⬇ Download</button>
+                <button class="lightbox-btn delete" id="deleteLightbox" style="display: none;">🗑 Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="video-modal" id="videoModal">
+        <button class="video-close" id="closeVideo">✕</button>
+        <div class="video-content">
+            <video id="videoPlayer" controls playsinline></video>
+            <div class="video-actions">
+                <button class="video-btn download" id="downloadVideo">⬇ Download Video</button>
+                <button class="video-btn delete" id="deleteVideo" style="display: none;">🗑 Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="viewer-modal" id="viewerModal">
+        <button class="viewer-close" id="closeViewer">✕</button>
+        <div id="viewer"></div>
+        <div class="viewer-actions">
+            <button class="viewer-btn" id="downloadViewer">⬇ Download Panorama</button>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <span class="toast-icon" id="toastIcon">✓</span>
+        <span class="toast-message" id="toastMessage"></span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core@5.7.1/index.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
