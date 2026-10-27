@@ -27,8 +27,9 @@
         <nav>
             <a href="#portfolio" class="nav-link">Portfolio</a>
             <a href="#upload" class="nav-link nav-cta" id="uploadNavLink" style="display: none;">Upload</a>
-            <!-- زرار الأدمن مخفي، بيظهر بالضغط 5 مرات على الاسم -->
-<button class="nav-link" id="adminBtn" style="display: block; background: transparent; border: none; cursor: pointer;">Admin</button>        </nav>
+            <!-- زرار الأدمن ظاهر دايماً -->
+            <button class="nav-link" id="adminBtn" style="display: block; background: transparent; border: none; cursor: pointer;">Admin</button>
+        </nav>
     </header>
 
     <!-- ==================== Hero Section ==================== -->
@@ -174,6 +175,7 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core@5.7.1/index.js"></script>
-    <script type="module" src="script.js"></script>
+    <!-- التعديل المهم هنا: ضفنا ?v=3 عشان نمسح الكاش -->
+    <script type="module" src="script.js?v=3"></script>
 </body>
 </html>
