@@ -21,7 +21,7 @@ const db = getFirestore(app);
 // الباسورد المشفر
 // ============================================
 // الباسورد الأصلي: Zizo@2026!
-const ADMIN_PASSWORD_HASH = '8e3d49f2c6a7b87110c5f5c9f6d4e1a0b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7'; 
+const ADMIN_PASSWORD_HASH = 'd3b07384d113edec49eaa6238ad5ff00'; 
 let isAdmin = false;
 
 // ============================================
