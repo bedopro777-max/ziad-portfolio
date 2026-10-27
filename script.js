@@ -459,4 +459,23 @@ document.getElementById('downloadViewer').addEventListener('click', () => { if (
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
     updateAdminUI();
+    createGoldParticles();
+
+    // --- سر إظهار زرار الأدمن (5 دوسات على الاسم) ---
+    const secretLogo = document.getElementById('secretLogo');
+    const adminBtn = document.getElementById('adminBtn');
+    let logoClickCount = 0;
+
+    if (secretLogo && adminBtn) {
+        secretLogo.addEventListener('click', () => {
+            logoClickCount++;
+            if (logoClickCount === 5) {
+                adminBtn.style.display = 'block'; // نظهر الزرار
+                showToast('Admin button revealed!');
+                logoClickCount = 0;
+            }
+            // لو مستنى أكتر من ثانية ونص، العداد يرجع صفر
+            setTimeout(() => { logoClickCount = 0; }, 1500);
+        });
+    }
 });
