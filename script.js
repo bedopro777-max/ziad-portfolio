@@ -18,10 +18,9 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // ============================================
-// الباسورد المشفر
+// الباسورد العادي (بدون تشفير)
 // ============================================
-// الباسورد الأصلي: Zizo@2026!
-const ADMIN_PASSWORD_HASH = 'd3b07384d113edec49eaa6238ad5ff00'; 
+const ADMIN_PASSWORD = 'Zizo@2026!'; 
 let isAdmin = false;
 
 // ============================================
@@ -50,7 +49,7 @@ function updateAdminUI() {
     } else {
         uploadSection.style.display = 'none';
         uploadNavLink.style.display = 'none';
-        // نثبت الزرار يبقى ظاهر دايماً
+        // الزرار يبقى ظاهر دايماً
         if (adminBtn) { adminBtn.style.display = 'block'; adminBtn.textContent = 'Admin'; adminBtn.style.color = 'var(--text-sec)'; }
         deleteLightboxBtn.style.display = 'none';
         deleteVideoBtn.style.display = 'none';
@@ -70,20 +69,11 @@ adminBtn.addEventListener('click', () => {
 
 document.getElementById('closeLogin').addEventListener('click', () => loginModal.classList.remove('active'));
 
-// دالة تشفير الباسورد
-async function hashPassword(password) {
-    const msgBuffer = new TextEncoder().encode(password);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-}
-
-// تسجيل الدخول باستخدام الهاش
-document.getElementById('loginSubmitBtn').addEventListener('click', async () => {
+// تسجيل الدخول باستخدام الباسورد العادي
+document.getElementById('loginSubmitBtn').addEventListener('click', () => {
     const pass = document.getElementById('loginPassword').value;
-    const hashedInput = await hashPassword(pass); // بنشفر اللي المستخدم كتبه
     
-    if (hashedInput === ADMIN_PASSWORD_HASH) { 
+    if (pass === ADMIN_PASSWORD) { 
         isAdmin = true;
         localStorage.setItem('zizo_admin_secure', 'true');
         document.getElementById('loginPassword').value = '';
